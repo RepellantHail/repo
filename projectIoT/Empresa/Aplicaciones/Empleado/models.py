@@ -19,3 +19,7 @@ class Employee(models.Model):
     email           =   models.EmailField(max_length=54)
     fechaNac        =   models.DateField(auto_now=False, auto_now_add=False)
     edad            =   models.IntegerField
+
+    def __str__(self):
+        texto = "{0} ({1})"
+        return texto.format(self.name, self.cargo)
