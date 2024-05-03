@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from .models import Employee
 import datetime
 
-
 # Create your views here.
 def home(request):
     empleados = Employee.objects.all()
@@ -58,3 +57,12 @@ def registrarEmpleado(request):
 
     return redirect('/')
     
+def eliminarEmpleado(request, id):
+    empleado = Employee.objects.get(id = id)
+    empleado.delete()
+
+    return redirect('/')
+
+def editarEmpleado(request, id):
+    empleado = Employee.objects.get(id = id)
+    return render(request, "editarEmpleado.html", {"empleado": empleado})
