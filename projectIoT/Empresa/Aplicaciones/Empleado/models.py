@@ -21,5 +21,5 @@ class Employee(models.Model):
     edad            =   models.IntegerField (default=22)
 
     def __str__(self):
-        texto = "{0} ({1})"
+        texto = "Nombre: {0} \t Ocupación: ({1})"
         return texto.format(self.name, self.cargo)
