@@ -8,6 +8,10 @@
 
 <body>
     <h1>Página gestion Empleados</h1>
-    
+    <ul>
+        {% for empleado in empleados %}
+        <li>{{c.nombre}}</li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
