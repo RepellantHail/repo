@@ -1,0 +1,103 @@
+{% block form %}
+<div class="card">
+    <div class="card-body text-bg-info ">
+        <form action="{{action}}" method="POST">
+            {% csrf_token %}                    
+            <input type="hidden" name="id" id="id" {% if is_edit_form %} value="{{ empleado.id }}" {% endif %}> 
+            <div class="row p-1">
+                <label for="txtID" class="col-form-label col-md-4">Nombre</label>
+                <div class="col-md-8">
+                    <input type="text" name="txtID" id="txtID" class="form-control form-control-sm" placeholder="Juanito" required {% if is_edit_form %} value="{{ empleado.name }}" {% endif %}>    
+                </div>
+            </div>
+            <div class="row p-1">
+                <label for="txtAPP" class="col-form-label col-md-4">Apellido Paterno</label>
+                <div class="col-md-8">
+                    <input type="text" name="txtAPP" id="txtAPP" class="form-control form-control-sm" placeholder="Perez" required  {% if is_edit_form %} value="{{ empleado.apellido1 }}" {% endif %}>    
+                </div>
+            </div>
+            <div class="row p-1">
+                <label for="txtAPM" class="col-form-label col-md-4">Apellido Materno</label>
+                <div class="col-md-8">
+                    <input type="text" name="txtAPM" id="txtAPM" class="form-control form-control-sm" placeholder="Perez" required {% if is_edit_form %} value="{{ empleado.apellido2 }}" {% endif %}>    
+                </div>
+            </div>
+            <div class="row p-1">
+                <label for="txtCargo" class="col-form-label col-md-4">Ocupacion</label>
+                <div class="col-md-8">
+                    <input type="text" name="txtCargo" id="txtCargo" class="form-control form-control-sm" placeholder="Becario Desarrollador" required {% if is_edit_form %} value="{{ empleado.cargo }}" {% endif %}>    
+                </div>
+            </div>
+            <div class="row p-1">
+                <label for="txtEmpresa" class="col-form-label col-md-4">Empresa</label>
+                <div class="col-md-8">
+                    <input type="text" name="txtEmpresa" id="txtEmpresa" class="form-control form-control-sm" placeholder="CETI Bussiness" required {% if is_edit_form %} value="{{ empleado.empresa }}" {% endif %}>    
+                </div>
+            </div>
+            <div class="row p-1">
+                <label for="txtCalle" class="col-form-label col-md-4">Calle</label>
+                <div class="col-md-8">
+                    <input type="text" name="txtCalle" id="txtCalle" class="form-control form-control-sm" placeholder="Nueva Escocia" required {% if is_edit_form %} value="{{ empleado.calle }}" {% endif %}>    
+                </div>
+            </div>
+            <div class="row p-1">
+                <label for="txtNExt" class="col-form-label col-md-4">Numero Exterior</label>
+                <div class="col-md-8">
+                    <input type="number" name="txtNExt" id="txtNExt" class="form-control form-control-sm" placeholder="12678" required {% if is_edit_form %} value="{{ empleado.numeroExt }}" {% endif %}>    
+                </div>
+            </div>
+            <div class="row p-1">
+                <label for="txtNInt" class="col-form-label col-md-4">Numero Interior</label>
+                <div class="col-md-8">
+                    <input type="text" name="txtNInt" id="txtNInt" class="form-control form-control-sm" placeholder="21B" required {% if is_edit_form %} value="{{ empleado.numeroInt }}" {% endif %}>    
+                </div>
+            </div>
+            <div class="row p-1">
+                <label for="txtColonia" class="col-form-label col-md-4">Colonia</label>
+                <div class="col-md-8">
+                    <input type="text" name="txtColonia" id="txtColonia" class="form-control form-control-sm" placeholder="Providencia" required {% if is_edit_form %} value="{{ empleado.colonia }}" {% endif %}>    
+                </div>
+            </div>
+            <div class="row p-1">
+                <label for="txtMunicipio" class="col-form-label col-md-4">Municipio</label>
+                <div class="col-md-8">
+                    <input type="text" name="txtMunicipio" id="txtMunicipio" class="form-control form-control-sm" placeholder="Perez" required {% if is_edit_form %} value="{{ empleado.municipio }}" {% endif %}>    
+                </div>
+            </div>
+            <div class="row p-1">
+                <label for="txtEstado" class="col-form-label col-md-4">Estado</label>
+                <div class="col-md-8">
+                    <input type="text" name="txtEstado" id="txtEstado" class="form-control form-control-sm" placeholder="Jalisco" required {% if is_edit_form %} value="{{ empleado.estado }}" {% endif %}>    
+                </div>
+            </div>
+            <div class="row p-1">
+                <label for="txtPO" class="col-form-label col-md-4">Codigo Postal</label>
+                <div class="col-md-8">
+                    <input type="number" name="txtPO" id="txtPO" class="form-control form-control-sm" placeholder="56089" required {% if is_edit_form %} value="{{ empleado.codPos }}" {% endif %}>    
+                </div>
+            </div>
+            <div class="row p-1">
+                <label for="txtPhone" class="col-form-label col-md-4">Telefono</label>
+                <div class="col-md-8">
+                    <input type="tel" name="txtPhone" id="txtPhone" class="form-control form-control-sm" placeholder="3456783478" required {% if is_edit_form %} value="{{ empleado.telefono }}" {% endif %}>    
+                </div>
+            </div>
+            <div class="row p-1">
+                <label for="txtEmail" class="col-form-label col-md-4">Email</label>
+                <div class="col-md-8">
+                    <input type="email" name="txtEmail" id="txtEmail" class="form-control form-control-sm" placeholder="ceti@ceti.mx" required {% if is_edit_form %} value="{{ empleado.email }}" {% endif %}>    
+                </div>
+            </div>
+            <div class="row p-1">
+                <label for="txtFNAC" class="col-form-label col-md-4">Fecha Nacimiento</label>
+                <div class="col-md-8">
+                    <input type="date" name="txtFNAC" id="txtFNAC" class="form-control form-control-sm" placeholder="19 de Abril 2000" required {% if is_edit_form %} value="{{ empleado.fechaNac|date:'Y-m-d' }}" {% endif %} >    
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success btn-block">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

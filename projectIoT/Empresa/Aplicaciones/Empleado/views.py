@@ -22,7 +22,7 @@ def registrarEmpleado(request):
     codPos    = request.POST['txtPO']
     telefono  = request.POST['txtPhone']
     email     = request.POST['txtEmail']
-    fechaNac_str = request.POST['txtFNAC']  # Get fechaNac or set default value
+    fechaNac_str = request.POST['txtFNAC']
 
     if fechaNac_str:
         # Convert fechaNac string to datetime.date object
@@ -63,6 +63,59 @@ def eliminarEmpleado(request, id):
 
     return redirect('/')
 
-def editarEmpleado(request, id):
+def getEmpleado(request, id):
     empleado = Employee.objects.get(id = id)
-    return render(request, "editarEmpleado.html", {"empleado": empleado})
+    return render(request, "getEmpleado.html", {"empleado": empleado})
+
+def editarEmpleado(request):
+    id        = request.POST['id']
+    name      = request.POST['txtID']
+    apellido1 = request.POST['txtAPP']
+    apellido2 = request.POST['txtAPM']
+    cargo     = request.POST['txtCargo']
+    empresa   = request.POST['txtEmpresa']
+    calle     = request.POST['txtCalle']
+    numeroExt = request.POST['txtNExt']
+    numeroInt = request.POST['txtNInt']
+    colonia   = request.POST['txtColonia']
+    municipio = request.POST['txtMunicipio']
+    estado    = request.POST['txtEstado']
+    codPos    = request.POST['txtPO']
+    telefono  = request.POST['txtPhone']
+    email     = request.POST['txtEmail']
+    fechaNac_str = request.POST['txtFNAC']
+
+    if fechaNac_str:
+        # Convert fechaNac string to datetime.date object
+        fechaNac = datetime.datetime.strptime(fechaNac_str, '%Y-%m-%d').date()
+
+        # Calculate age based on fechaNac
+        today = datetime.date.today()
+        age = today.year - fechaNac.year - ((today.month, today.day) < (fechaNac.month, fechaNac.day))
+    else:
+        # Set default values if fechaNac is not provided
+        fechaNac = None
+        age = None
+
+    #Get Empleado
+    empleado = Employee.objects.get(id = id)
+
+    empleado.name = name
+    empleado.apellido1 = apellido1
+    empleado.apellido2 = apellido2
+    empleado.cargo = cargo
+    empleado.empresa = empresa
+    empleado.calle = calle
+    empleado.numeroExt = numeroExt
+    empleado.numeroInt = numeroInt
+    empleado.colonia = colonia
+    empleado.municipio = municipio
+    empleado.estado = estado
+    empleado.codPos = codPos
+    empleado.telefono = telefono
+    empleado.email = email
+    empleado.fechaNac = fechaNac
+    empleado.edad = age
+
+    empleado.save()
+    return redirect('/')

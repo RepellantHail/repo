@@ -6,107 +6,8 @@
 <div class="row">
     <!-- Form Empleado -->
     <div class="col-md-6 col-sm-12 col-lg-4 text-start">
-        <h2>Gestion Empleados</h2>
-        <div class="card">
-            <div class="card-body text-bg-info ">
-                <form action="/registrarEmpleado/" method="POST">
-                    {% csrf_token %}                     
-                    <div class="row p-1">
-                        <label for="txtID" class="col-form-label col-md-4">Nombre</label>
-                        <div class="col-md-8">
-                            <input type="text" name="txtID" id="txtID" class="form-control form-control-sm" placeholder="Juanito" required>    
-                        </div>
-                    </div>
-                    <div class="row p-1">
-                        <label for="txtAPP" class="col-form-label col-md-4">Apellido Paterno</label>
-                        <div class="col-md-8">
-                            <input type="text" name="txtAPP" id="txtAPP" class="form-control form-control-sm" placeholder="Perez" required>    
-                        </div>
-                    </div>
-                    <div class="row p-1">
-                        <label for="txtAPM" class="col-form-label col-md-4">Apellido Materno</label>
-                        <div class="col-md-8">
-                            <input type="text" name="txtAPM" id="txtAPM" class="form-control form-control-sm" placeholder="Perez" required>    
-                        </div>
-                    </div>
-                    <div class="row p-1">
-                        <label for="txtCargo" class="col-form-label col-md-4">Ocupacion</label>
-                        <div class="col-md-8">
-                            <input type="text" name="txtCargo" id="txtCargo" class="form-control form-control-sm" placeholder="Becario Desarrollador" required>    
-                        </div>
-                    </div>
-                    <div class="row p-1">
-                        <label for="txtEmpresa" class="col-form-label col-md-4">Empresa</label>
-                        <div class="col-md-8">
-                            <input type="text" name="txtEmpresa" id="txtEmpresa" class="form-control form-control-sm" placeholder="CETI Bussiness" required>    
-                        </div>
-                    </div>
-                    <div class="row p-1">
-                        <label for="txtCalle" class="col-form-label col-md-4">Calle</label>
-                        <div class="col-md-8">
-                            <input type="text" name="txtCalle" id="txtCalle" class="form-control form-control-sm" placeholder="Nueva Escocia" required>    
-                        </div>
-                    </div>
-                    <div class="row p-1">
-                        <label for="txtNExt" class="col-form-label col-md-4">Numero Exterior</label>
-                        <div class="col-md-8">
-                            <input type="number" name="txtNExt" id="txtNExt" class="form-control form-control-sm" placeholder="12678" required>    
-                        </div>
-                    </div>
-                    <div class="row p-1">
-                        <label for="txtNInt" class="col-form-label col-md-4">Numero Interior</label>
-                        <div class="col-md-8">
-                            <input type="text" name="txtNInt" id="txtNInt" class="form-control form-control-sm" placeholder="21B" required>    
-                        </div>
-                    </div>
-                    <div class="row p-1">
-                        <label for="txtColonia" class="col-form-label col-md-4">Colonia</label>
-                        <div class="col-md-8">
-                            <input type="text" name="txtColonia" id="txtColonia" class="form-control form-control-sm" placeholder="Providencia" required>    
-                        </div>
-                    </div>
-                    <div class="row p-1">
-                        <label for="txtMunicipio" class="col-form-label col-md-4">Municipio</label>
-                        <div class="col-md-8">
-                            <input type="text" name="txtMunicipio" id="txtMunicipio" class="form-control form-control-sm" placeholder="Perez" required>    
-                        </div>
-                    </div>
-                    <div class="row p-1">
-                        <label for="txtEstado" class="col-form-label col-md-4">Estado</label>
-                        <div class="col-md-8">
-                            <input type="text" name="txtEstado" id="txtEstado" class="form-control form-control-sm" placeholder="Jalisco" required>    
-                        </div>
-                    </div>
-                    <div class="row p-1">
-                        <label for="txtPO" class="col-form-label col-md-4">Codigo Postal</label>
-                        <div class="col-md-8">
-                            <input type="number" name="txtPO" id="txtPO" class="form-control form-control-sm" placeholder="56089" required>    
-                        </div>
-                    </div>
-                    <div class="row p-1">
-                        <label for="txtPhone" class="col-form-label col-md-4">Telefono</label>
-                        <div class="col-md-8">
-                            <input type="tel" name="txtPhone" id="txtPhone" class="form-control form-control-sm" placeholder="3456783478" required>    
-                        </div>
-                    </div>
-                    <div class="row p-1">
-                        <label for="txtEmail" class="col-form-label col-md-4">Email</label>
-                        <div class="col-md-8">
-                            <input type="email" name="txtEmail" id="txtEmail" class="form-control form-control-sm" placeholder="ceti@ceti.mx" required>    
-                        </div>
-                    </div>
-                    <div class="row p-1">
-                        <label for="txtFNAC" class="col-form-label col-md-4">Fecha Nacimiento</label>
-                        <div class="col-md-8">
-                            <input type="date" name="txtFNAC" id="txtFNAC" class="form-control form-control-sm" placeholder="19 de Abril 2000" required>    
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-success btn-block">Submit</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+        <h2>Gestion Empleados</h2>        
+        {% include "formulario.html" with action="/registrarEmpleado/"  is_edit_form=False %}
     </div>
     <!-- Listado de Empleados -->
     <div class="col-md-6 col-sm-12 col-lg-8">
@@ -115,6 +16,7 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th><i class="bi bi-list-ol"></i> ID</th>
                         <th><i class="bi bi-person-square"></i> Nombre</th>
                         <th>Apellido P</th>
@@ -128,6 +30,7 @@
                 <tbody>
                     {% for empleado in empleados %}
                     <tr>
+                        <td>{{forloop.counter}}</td>
                         <td>{{empleado.id}}</td>
                         <td>{{empleado.name}}</td>
                         <td>{{empleado.apellido1}}</td>
@@ -135,8 +38,12 @@
                         <td>{{empleado.cargo}}</td>
                         <td>{{empleado.empresa}}</td>
                         <td>{{empleado.edad}}</td>
-                        <td><a href="editarEmpleado/{{empleado.id}}" class="btn btn-info"><i class="bi bi-pencil-fill"></i></a></td>
-                        <td><a href="eliminarEmpleado/{{empleado.id}}" class="btn btn-danger"><i class="bi bi-trash-fill"></i></a></td>
+                        <td><a href="getEmpleado/{{empleado.id}}" class="btn btn-info"><i class="bi bi-pencil-fill"></i></a></td>
+                        <td>
+                            <a href="eliminarEmpleado/{{empleado.id}}" class="btn btn-danger">
+                                <i class="bi bi-trash-fill"></i>
+                            </a>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>

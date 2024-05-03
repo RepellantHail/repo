@@ -1,0 +1,11 @@
+{% extends "./base.html"%}
+
+{%block title%} Editar Empleado {%endblock%}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+    {% include "formulario.html" with action="/editarEmpleado/" is_edit_form=True %}
+    </div>
+</div>
+{% endblock %}
