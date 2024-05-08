@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Employee
 import datetime
+from django.conf import settings
+import os
 
 # Create your views here.
 def home(request):
@@ -119,3 +121,12 @@ def editarEmpleado(request):
 
     empleado.save()
     return redirect('/')
+
+def readFile(src):
+    with open(src, 'r') as file:
+        return file.read()
+
+def gestionOficio(request):
+    file_path = os.path.dirname(os.path.abspath(__file__))
+    file_content = readFile(os.path.join(file_path, './static/documents/oficio.txt'))
+    return render(request, "oficio.html", {'file_content': file_content})

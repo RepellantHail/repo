@@ -1,0 +1,56 @@
+{% extends "./base.html"%}
+
+{%block title%} Gestion Empleados {%endblock%}
+
+{% block body %}
+<div class="row p-2">
+    <h2 class="m-1 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">Generación Oficios</h2> 
+</div>
+<div class="row p-2">   
+    <!-- Segmento de texto del oficio -->
+    <div class="col-3 text-start">
+        <h3 class=" m-1 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">Formato Oficio</h3>
+        <pre style="white-space: pre-wrap;" class="fs-6 fst-italic fw-semibold lh-sm">{{ file_content }}</pre>
+    </div>
+    <!-- tabla de empleados para seleccionar exportaciones -->
+    <div class="col-9">
+        <h3 class="p-1 m-1 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">Empleados</h3>
+        <div class="table-responsive">
+            <table class="table table-hover ">
+                <thead>
+                    <tr>
+                        <th><i class="bi bi-check-square"></i></th>
+                        <th><i class="bi bi-list-ol"></i> ID</th>
+                        <th><i class="bi bi-person-square"></i> Nombre</th>
+                        <th>Apellido P</th>
+                        <th>Apellido M</th>
+                        <th><i class="bi bi-briefcase-fill"></i> Ocupacion</th>
+                        <th><i class="bi bi-buildings-fill"></i> Empresa</th>
+                        <td><i class="bi bi-cake2-fill"></i> Edad</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for empleado in empleados %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{empleado.id}}</td>
+                        <td>{{empleado.name}}</td>
+                        <td>{{empleado.apellido1}}</td>
+                        <td>{{empleado.apellido2}}</td>
+                        <td>{{empleado.cargo}}</td>
+                        <td>{{empleado.empresa}}</td>
+                        <td>{{empleado.edad}}</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a href="getEmpleado/{{empleado.id}}" class="btn btn-warning" role="button"><i class="bi bi-pencil-fill"></i></a>
+                                <a href="eliminarEmpleado/{{empleado.id}}" class="btn btn-danger"><i class="bi bi-trash-fill"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
