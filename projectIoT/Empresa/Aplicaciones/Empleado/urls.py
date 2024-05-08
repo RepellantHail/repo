@@ -8,4 +8,5 @@ urlpatterns = [
     path('getEmpleado/<id>', views.getEmpleado),
     path('editarEmpleado/', views.editarEmpleado),
     path('gestionOficio/', views.gestionOficio, name='gestion_oficio'),
+    path('procesarOficio/', views.procesarOficio, name='exportar_oficio'),
 ]
