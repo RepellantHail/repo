@@ -15,7 +15,7 @@ class Employee(models.Model):
     municipio = models.CharField    (max_length=100)
     estado    = models.CharField    (max_length=100)
     codPos    = models.IntegerField (default=45060)
-    telefono  = models.IntegerField (default=3331000000)
+    telefono  = models.CharField(max_length=20) 
     email     = models.EmailField   (max_length=54)
     fechaNac  = models.DateField    (auto_now=False, auto_now_add=False)
     edad      = models.IntegerField (default=22)

@@ -4,10 +4,12 @@ from .models import Employee
 import datetime
 from django.conf import settings
 import os
-from .utils.utils import exportFile, insertData
+from .utils.utils import exportFile, insertData, readFile, importData
+
 # Create your views here.
 def home(request):
     empleados = Employee.objects.all()
+    # importData() Importa mock data
     return render(request, "gestionEmpleado.html", {"empleados": empleados})
 
 def registrarEmpleado(request):
@@ -122,10 +124,6 @@ def editarEmpleado(request):
 
     empleado.save()
     return redirect('/')
-
-def readFile(src):
-    with open(src, 'r') as file:
-        return file.read()
 
 def gestionOficio(request):
     empleados = Employee.objects.all()

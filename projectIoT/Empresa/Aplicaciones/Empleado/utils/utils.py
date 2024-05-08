@@ -1,4 +1,6 @@
 import os
+import datetime
+from ..models import Employee
 
 # Create an instance of the Institution class
 class Institution :
@@ -47,7 +49,7 @@ def insertInstitution(oficio):
     # Return the filled oficio
     return filled_oficio
 
-def insertAlumno(oficio, empleado):
+def insertAlumno(oficio, empleado):    
     filled = oficio.replace("[Nombre]"              , str(empleado.name))
     filled = filled.replace("[Apellido Paterno]"    , str(empleado.apellido1))
     filled = filled.replace("[Apellido Materno]"    , str(empleado.apellido2))
@@ -66,3 +68,70 @@ def insertAlumno(oficio, empleado):
     filled = filled.replace("[Empresa]"             , str(empleado.empresa))
     # Return the filled oficio
     return filled
+
+def readFile(file_path):
+    with open(file_path, 'r') as file:
+        return file.readlines()
+    
+def importData():
+    # Get the absolute path to the current directory
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    # Read mock data
+    mockDataLines = readFile(os.path.join(current_dir, '../static/documents/MOCK_DATA.txt'))
+    
+    # Iterate over each line of mock data
+    for id, alumno_data in enumerate(mockDataLines, start=1):
+        # Parse the comma-separated values
+        alumno_fields = alumno_data.strip().split(',')
+        if len(alumno_fields) != 15:
+            print(f"Error: Invalid data format in line {id} of MOCK_DATA.txt")
+            continue
+        
+        # Extract individual fields
+        name = alumno_fields[0]
+        apellido1 = alumno_fields[1]
+        apellido2 = alumno_fields[2]
+        cargo = alumno_fields[3]
+        empresa = alumno_fields[4]
+        calle = alumno_fields[5]
+        numeroExt = alumno_fields[6]
+        numeroInt = alumno_fields[7]
+        colonia = alumno_fields[8]
+        municipio = alumno_fields[9]
+        estado = alumno_fields[10]
+        codPos = alumno_fields[11]
+        telefono = alumno_fields[12]
+        telefono = ''.join(filter(str.isdigit, alumno_fields[12])) 
+        email = alumno_fields[13]
+        fechaNac_str = alumno_fields[14]
+        
+        # Convert fechaNac string to datetime.date object
+        try:
+            fechaNac = datetime.datetime.strptime(fechaNac_str, '%m/%d/%Y').date()
+        except ValueError:
+            print(f"Error: Invalid date format in line {id} of MOCK_DATA.txt")
+            continue
+        
+        # Calculate age based on fechaNac
+        today = datetime.date.today()
+        age = today.year - fechaNac.year - ((today.month, today.day) < (fechaNac.month, fechaNac.day))
+        
+        # Create and save Employee object
+        empleado = Employee.objects.create(
+            name=name,
+            apellido1=apellido1,
+            apellido2=apellido2,
+            cargo=cargo,
+            empresa=empresa,
+            calle=calle,
+            numeroExt=numeroExt,
+            numeroInt=numeroInt,
+            colonia=colonia,
+            municipio=municipio,
+            estado=estado,
+            codPos=codPos,
+            telefono=telefono,
+            email=email,
+            fechaNac=fechaNac,
+            edad=age,
+        )
